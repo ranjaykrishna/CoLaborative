@@ -17,13 +17,13 @@ function getCookie(name) {
 
 function sendAnnotation(){
     var csrftoken = getCookie('csrftoken');
-    var t_id, t_x, t_y, t_h, t_w;
+    var t_id, t_x, t_y, t_h, t_w, t_description;
 
     /* make the asychronous call */
     $.ajax({
         type: "POST",
         url: "/editAnnotation/",
-        data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, csrfmiddlewaretoken: csrftoken},
+        data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
         fail: function(data){
             /* TODO: Revert the change on the front end. */
         }
