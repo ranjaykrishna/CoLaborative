@@ -37,7 +37,9 @@ function render() {
 }
 
 function addAnnotation(id,x,y,w,h,text,up,down) {
-    var annotation = "<div class='isResizable' style='top:" + y + "; left:" + x + "; width:" + w + "; height:" + h + "'></div>";
+    var id = "TMP" + (new Date().getTime());
+    var annotation = "<div id='"+ id +"' class='isResizable' style='top:" + y + "; left:" + x + "; width:" + w + "; height:" + h + "'></div>";
     $("#annotation_container").append(annotation);
+    //$( "#"+id ).resizable();
 }
 
