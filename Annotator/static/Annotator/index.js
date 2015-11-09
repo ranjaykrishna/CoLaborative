@@ -6,6 +6,9 @@ var VERIFIED_THRESHOLD = 3;
 var INCORRECT_THRESHOLD = -3;
 
 $(function() {
+    //get from server every second
+    setInterval(getAnnotations, 1000);
+
     //register event handlers
     $("#aImg").mousedown(function(mevent){
         //create div
