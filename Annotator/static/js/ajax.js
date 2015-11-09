@@ -24,6 +24,9 @@ function sendAnnotation(){
         type: "POST",
         url: "/editAnnotation/",
         data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
+        success: function(data) {
+            addAnnotations(data);
+        },
         fail: function(data){
             /* TODO: Revert the change on the front end. */
         }
