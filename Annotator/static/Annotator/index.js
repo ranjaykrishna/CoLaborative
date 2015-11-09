@@ -59,19 +59,32 @@ function filter(mode) {
 }
 
 function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
+    //does the annotation exist?
     if ($('#annotation_'+id).length == 0){
+        //create a new id if it doesnt have one
         if (id == -1) {
             var id = $('.isResizable').length;
         }
+
+        //create a new annotation
         var annotation = "<div id='annotation_"+id+"' class='isResizable'></div>";
         $("#annotation_container").append(annotation);
+
+        $('#annotation_'+id).draggable().resizable();
+        $('#annotation_'+id).on('dragstop', function(e){dropAnnotation(e)});
     }
 
+    //change the css of the annotation
     var annotation = $('#annotation_'+id);
 
     annotation.css({top: y, left: x, width:w, height:h});
 
     annotation.attr("upVotes", upVotes);
     annotation.attr("downVotes", downVotes);
+}
+
+function dropAnnotation(e){
+    console.log("Dropping annotation..");
+    console.log(e);
 }
 
