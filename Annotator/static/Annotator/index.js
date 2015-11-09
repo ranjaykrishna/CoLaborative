@@ -1,4 +1,6 @@
 var mode = 'EDIT'; // Modes are VERIFIED, EDIT and INCORRECT
+var VERIFIED_THRESHOLD = 3;
+var INCORRECT_THRESHOLD = -3;
 // TODO: Remove this later
 var annotations = [{'id': 1, 'text': 'lawrence', 'x': 20, 'y': 20, 'w': 20, 'h': 30, 'upVotes': 3, 'downVotes': 1}];
 var isDragged = false;
