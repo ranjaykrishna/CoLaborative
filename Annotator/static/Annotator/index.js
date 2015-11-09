@@ -72,6 +72,8 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 
         $('#annotation_'+id).draggable().resizable();
         $('#annotation_'+id).on('dragstop', function(e){dropAnnotation(e)});
+
+        fillAnnotation($('#annotation_'+id));
     }
 
     //change the css of the annotation
@@ -88,3 +90,10 @@ function dropAnnotation(e){
     console.log(e);
 }
 
+
+
+function fillAnnotation(annotation) {
+    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span></button>");
+    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
+    annotation.append("<input type='text'>");
+}

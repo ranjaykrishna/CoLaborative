@@ -23,6 +23,20 @@
     background: rgba(255, 0, 0, 0.8);
 }
 
+.isResizable .btn {
+    display: none;
+}
+.isResizable:hover .btn {
+    display: block;
+}
+.isResizable input {
+    display: none;
+}
+.isResizable:hover input {
+    display: block;
+}
+
+
 #full_container {
     float: left;
     position: relative;
