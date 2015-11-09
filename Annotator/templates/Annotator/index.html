@@ -6,9 +6,16 @@
     <title>CoLaborator</title>
 </head>
 <body>
-  <div class="container">
-    <canvas id="myCanvas" width="1000" height="700">
-  </div>
-  <script src="{% static 'Annotator/index.js' %}"></script>
+<div id="full_container">
+    <div id="image_container">
+        <img id="aImg" src="http://i.telegraph.co.uk/multimedia/archive/02839/oscarsselfie_2839758b.jpg">
+    </div>
+
+    <!-- Stores all annotations -->
+    <div id="annotation_container">
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="{% static 'Annotator/index.js' %}"></script>
 </body>
 </html>
