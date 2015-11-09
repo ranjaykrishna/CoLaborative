@@ -6,9 +6,6 @@ var annotations = [{'id': 1, 'text': 'lawrence', 'x': 20, 'y': 20, 'w': 20, 'h':
 var isDragged = false;
 
 $(function() {
-    //populate with fake data
-    render();
-
     //register event handlers
     $("#aImg").mousedown(function(mevent){
         //create div
@@ -22,6 +19,15 @@ $(function() {
 
     });
 });
+
+function syncAnnotations(server_annotations) {
+    annotations = server_annotations;
+
+    for (var i=0; i<annotations.length; i++) {
+        var an = annotations[i];
+        addAnnotation(an.id, an.x, an.y, an.w, an.h, an.text, an.upVotes, an.downVotes);
+    }
+}
 
 function render() {
     for (var i=0; i<annotations.length; i++) {
@@ -37,7 +43,16 @@ function render() {
 }
 
 function addAnnotation(id,x,y,w,h,text,up,down) {
-    var annotation = "<div class='isResizable' style='top:" + y + "; left:" + x + "; width:" + w + "; height:" + h + "'></div>";
-    $("#annotation_container").append(annotation);
+    if ($('#annotation_'+id).length == 0){
+        if (id == -1) {
+            var id = $('.isResizable').length;
+        }
+        var annotation = "<div id='annotation_"+id+"' class='isResizable'></div>";
+        $("#annotation_container").append(annotation);
+    }
+
+    var annotation = $('#annotation_'+id);
+
+    annotation.css({top: y, left: x, width:w, height:h});
 }
 

@@ -1,0 +1,43 @@
+#mydiv {
+    background-color:#F00;
+    width:50px;
+    height:50px;
+}
+
+.isResizable {
+  background: rgba(255, 0, 0, 0.2);
+  font-size: 2em;
+  border: 1px solid black;
+  overflow: hidden;
+  resize: both;
+  width: 160px;
+  height: 120px;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 1000px;
+  max-height: 1000px;
+    position:absolute;
+}
+
+.isResizable:hover {
+    background: rgba(255, 0, 0, 0.8);
+}
+
+#full_container {
+    float: left;
+    position: relative;
+}
+
+#annotation_container {
+    position: absolute;
+    z-index: 900;
+}
+
+#image_container {
+    display: block;
+    z-index: 777;
+}
+#aImg {
+    position: absolute;
+    cursor: pointer;
+}
