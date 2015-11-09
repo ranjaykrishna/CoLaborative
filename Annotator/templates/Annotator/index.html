@@ -7,12 +7,27 @@
 </head>
 <body>
 <div id="full_container">
-    <div id="image_container">
-        <img id="aImg" src="http://i.telegraph.co.uk/multimedia/archive/02839/oscarsselfie_2839758b.jpg">
-    </div>
+    <div class="row">
+        <div class="col-md-4">
+              <div>
+                  <button type="button">VERIFIED</button>
+              </div>
+              <div>
+                  <button type="button">EDIT</button>
+              </div>
+              <div>
+                  <button type="button">INCORRECT</button>
+              </div>
+        </div>
+        <div class="col-md-8">
+            <div id="image_container">
+                <img id="aImg" src="http://i.telegraph.co.uk/multimedia/archive/02839/oscarsselfie_2839758b.jpg">
+            </div>
 
-    <!-- Stores all annotations -->
-    <div id="annotation_container">
+            <!-- Stores all annotations -->
+            <div id="annotation_container">
+            </div>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
