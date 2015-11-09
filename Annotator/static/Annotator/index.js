@@ -12,7 +12,7 @@ $(function() {
     //register event handlers
     $("#aImg").mousedown(function(mevent){
         //create div
-        addAnnotation(1,mevent.x, mevent.y, 10, 10, "default", 0, 0);
+        addAnnotation(-1,mevent.x, mevent.y, 10, 10, "default", 0, 0);
 
     });
 
