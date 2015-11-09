@@ -15,9 +15,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function sendAnnotation(){
+function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description){
     var csrftoken = getCookie('csrftoken');
-    var t_id, t_x, t_y, t_h, t_w, t_description;
 
     /* make the asychronous call */
     $.ajax({
@@ -25,7 +24,8 @@ function sendAnnotation(){
         url: "/editAnnotation/",
         data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
         success: function(data) {
-            syncAnnotations(data);
+            //syncAnnotations(data);
+            console.log("Successfully sent annotations!");
         },
         fail: function(data){
             /* TODO: Revert the change on the front end. */

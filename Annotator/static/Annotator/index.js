@@ -85,20 +85,22 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
     annotation.attr("downVotes", downVotes);
 
     $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
-    $('.isResizable').on('drag', function(e){dropAnnotation(e);});
-    $('.isResizable').on('resize', function(e){resizeAnnotation(e);});
+    $('.isResizable').on('drag', function(e){editAnnotation(e);});
+    $('.isResizable').on('resize', function(e){editAnnotation(e);});
 }
 
-function dropAnnotation(e){
+function editAnnotation(e){
+    /* send the annotation to the server */
     console.log("Dropping annotation..");
-    console.log(e);
-}
+    var id = e.currentTarget.id;
+    var y = $("#"+id).css("top");
+    var x = $("#"+id).css("left");
+    console.log("Updating X: "+ x);
+    console.log("Updating Y: "+ y);
 
-function resizeAnnotation(e){
-    console.log("Resizing annotation..");
-    console.log(e);
+    /* send the annotation to the server */
+    sendAnnotation(e.currentTarget.id, e.offsetX, e.offsetY, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
 }
-
 
 
 function fillAnnotation(annotation) {
