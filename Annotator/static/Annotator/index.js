@@ -81,10 +81,19 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 
     annotation.attr("upVotes", upVotes);
     annotation.attr("downVotes", downVotes);
+
+    $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
+    $('.isResizable').on('drag', function(e){dropAnnotation(e);});
+    $('.isResizable').on('resize', function(e){resizeAnnotation(e);});
 }
 
 function dropAnnotation(e){
     console.log("Dropping annotation..");
+    console.log(e);
+}
+
+function resizeAnnotation(e){
+    console.log("Resizing annotation..");
     console.log(e);
 }
 
