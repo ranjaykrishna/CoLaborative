@@ -9,7 +9,6 @@
   font-size: 2em;
   border: 1px solid black;
   overflow: hidden;
-  resize: both;
   width: 160px;
   height: 120px;
   min-width: 10px;
@@ -22,6 +21,20 @@
 .isResizable:hover {
     background: rgba(255, 0, 0, 0.8);
 }
+
+.isResizable .btn {
+    display: none;
+}
+.isResizable:hover .btn {
+    display: block;
+}
+.isResizable input {
+    display: none;
+}
+.isResizable:hover input {
+    display: block;
+}
+
 
 #full_container {
     float: left;

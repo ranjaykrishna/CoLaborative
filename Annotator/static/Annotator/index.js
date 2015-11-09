@@ -9,7 +9,7 @@ $(function() {
     //register event handlers
     $("#aImg").mousedown(function(mevent){
         //create div
-        addAnnotation(-1,mevent.offsetX, mevent.offsetY, 10, 10, "default", 0, 0);
+        addAnnotation(-1,mevent.offsetX, mevent.offsetY, 50, 50, "default", 0, 0);
 
     });
 
@@ -72,6 +72,8 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 
         $('#annotation_'+id).draggable().resizable();
         $('#annotation_'+id).on('dragstop', function(e){dropAnnotation(e)});
+
+        fillAnnotation($('#annotation_'+id));
     }
 
     //change the css of the annotation
@@ -81,6 +83,10 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 
     annotation.attr("upVotes", upVotes);
     annotation.attr("downVotes", downVotes);
+
+    $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
+    $('.isResizable').on('drag', function(e){dropAnnotation(e);});
+    $('.isResizable').on('resize', function(e){resizeAnnotation(e);});
 }
 
 function dropAnnotation(e){
@@ -88,3 +94,15 @@ function dropAnnotation(e){
     console.log(e);
 }
 
+function resizeAnnotation(e){
+    console.log("Resizing annotation..");
+    console.log(e);
+}
+
+
+
+function fillAnnotation(annotation) {
+    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span></button>");
+    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
+    annotation.append("<input type='text'>");
+}
