@@ -11,7 +11,6 @@ $(function() {
 
     //register event handlers
     $("#aImg").mousedown(function(mevent){
-        console.log(mevent);
         //create div
         addAnnotation(1,mevent.x, mevent.y, 10, 10, "default", 0, 0);
 
@@ -38,9 +37,16 @@ function render() {
 }
 
 function addAnnotation(id,x,y,w,h,text,up,down) {
-    var id = "TMP" + (new Date().getTime());
-    var annotation = "<div id='"+ id +"' class='isResizable' style='top:" + y + "; left:" + x + "; width:" + w + "; height:" + h + "'></div>";
-    $("#annotation_container").append(annotation);
-    $( "#"+id ).draggable().resizable();
+    if ($('#annotation_'+id).length == 0){
+        if (id == -1) {
+            var id = $('.isResizable').length;
+        }
+        var annotation = "<div id='annotation_"+id+"' class='isResizable'></div>";
+        $("#annotation_container").append(annotation);
+    }
+
+    var annotation = $('#annotation_'+id);
+
+    annotation.css({top: y, left: x, width:w, height:h});
 }
 
