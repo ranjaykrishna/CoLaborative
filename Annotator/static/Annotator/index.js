@@ -1,15 +1,15 @@
-var mode = 'EDIT'; // Modes are VERIFIED, EDIT and INCORRECT
+var MODE_VERIFIED = "VERIFIED";
+var MODE_EDIT = "EDIT";
+var MODE_INCORRECT = "INCORRECT";
+
 var VERIFIED_THRESHOLD = 3;
 var INCORRECT_THRESHOLD = -3;
-// TODO: Remove this later
-var annotations = [{'id': 1, 'text': 'lawrence', 'x': 20, 'y': 20, 'w': 20, 'h': 30, 'upVotes': 3, 'downVotes': 1}];
-var isDragged = false;
 
 $(function() {
     //register event handlers
     $("#aImg").mousedown(function(mevent){
         //create div
-        addAnnotation(1,mevent.x, mevent.y, 10, 10, "default", 0, 0);
+        addAnnotation(-1,mevent.offsetX, mevent.offsetY, 10, 10, "default", 0, 0);
 
     });
 
@@ -29,30 +29,62 @@ function syncAnnotations(server_annotations) {
     }
 }
 
-function render() {
-    for (var i=0; i<annotations.length; i++) {
-        var an = annotations[i];
-        if (mode == 'VERIFIED' && an['upVotes'] - an['downVotes'] >= VERIFIED_THRESHOLD) {
-            addAnnotation(an.id, an.x, an.y, an.w, an.h, an.text, an.upVotes, an.downVotes);
-        } else if (mode == 'INCORRECT' && an['upVotes'] - an['downVotes'] <= INCORRECT_THRESHOLD) {
-            addAnnotation(an.id, an.x, an.y, an.w, an.h, an.text, an.upVotes, an.downVotes);
-        } else if (mode == 'EDIT') {
-            addAnnotation(an.id, an.x, an.y, an.w, an.h, an.text, an.upVotes, an.downVotes);
+function filter(mode) {
+    $('[id^="content_"]').each(function(index) {
+        var annotationdiv = $(this);
+
+        if (mode == MODE_EDIT) {
+            annotationdiv.show();
+        } else {
+            var ups = annotationdiv.attr("upVotes");
+            var downs = annotationdiv.attr("downVotes");
+            var total = ups - downs;
+
+            if (mode == MODE_VERIFIED) {
+                if (total >= VERIFIED_THRESHOLD) {
+                    annotationdiv.show();
+                }else {
+                    annotationdiv.hide();
+                }
+            }
+            else if (mode == MODE_INCORRECT) {
+                if (total <= INCORRECT_THRESHOLD) {
+                    annotationdiv.show();
+                }else {
+                    annotationdiv.hide();
+                }
+            }
         }
-    }
+    });
 }
 
-function addAnnotation(id,x,y,w,h,text,up,down) {
+function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
+    //does the annotation exist?
     if ($('#annotation_'+id).length == 0){
+        //create a new id if it doesnt have one
         if (id == -1) {
             var id = $('.isResizable').length;
         }
+
+        //create a new annotation
         var annotation = "<div id='annotation_"+id+"' class='isResizable'></div>";
         $("#annotation_container").append(annotation);
+
+        $('#annotation_'+id).draggable().resizable();
+        $('#annotation_'+id).on('dragstop', function(e){dropAnnotation(e)});
     }
 
+    //change the css of the annotation
     var annotation = $('#annotation_'+id);
 
     annotation.css({top: y, left: x, width:w, height:h});
+
+    annotation.attr("upVotes", upVotes);
+    annotation.attr("downVotes", downVotes);
+}
+
+function dropAnnotation(e){
+    console.log("Dropping annotation..");
+    console.log(e);
 }
 
