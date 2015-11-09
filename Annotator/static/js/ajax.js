@@ -22,7 +22,7 @@ function sendAnnotation(){
     /* make the asychronous call */
     $.ajax({
         type: "POST",
-        url: "/editAnnotation/",
+        url: "/editAnnotation",
         data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
         success: function(data) {
             syncAnnotations(data);
@@ -39,7 +39,7 @@ function getAnnotations(){
     /* make the asychronous call */
     $.ajax({
         type: "GET",
-        url: "/getAnnotations/",
+        url: "/getAnnotations",
         data: {csrfmiddlewaretoken: csrftoken},
         success: function (data) {
             /* TODO: Parse the JSON into SVG elements. */
