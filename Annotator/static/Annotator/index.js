@@ -128,7 +128,7 @@ function editAnnotationByID(id) {
     var desc = $("#text_"+id).text();
 
     /* send the annotation to the server */
-    sendAnnotation(n_id, x, y, h, w, desc);
+    sendAnnotation(id, x, y, h, w, desc);
 }
 
 
