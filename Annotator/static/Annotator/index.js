@@ -97,7 +97,7 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
         $('#annotation_'+id).on('dragstop', function(e){editAnnotation(e)});
 
         fillAnnotation(id);
-        editAnnotationByID(id);
+        //editAnnotationByID(id);
     }
 
     //change the css of the annotation
@@ -113,7 +113,7 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 
     $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
     $('.isResizable').on('mousedrop', function(e){editAnnotation(e);});
-    //$('.isResizable').on('resize', function(e){editAnnotation(e);});
+    $('.isResizable').on('resize', function(e){editAnnotation(e);});
 
 
 }
