@@ -112,6 +112,8 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
     $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
     $('.isResizable').on('mousedrop', function(e){editAnnotation(e);});
     //$('.isResizable').on('resize', function(e){editAnnotation(e);});
+
+    editAnnotationByID(id);
 }
 
 function editAnnotation(e){
