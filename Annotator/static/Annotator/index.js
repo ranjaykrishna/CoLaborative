@@ -26,7 +26,7 @@ var INCORRECT_THRESHOLD = -3;
 
 $(function() {
     //get from server every second
-    setInterval(getAnnotations, 1000);
+    setInterval(getAnnotations, 5000);
 
     //register event handlers
     $("#aImg").mousedown(function(mevent){
