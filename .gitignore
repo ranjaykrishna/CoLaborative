@@ -1,1 +1,3 @@
 *.pyc
+CoLaborative/settings.py
+CoLaborative/wsgi.py
