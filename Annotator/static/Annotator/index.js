@@ -119,9 +119,10 @@ function editAnnotation(e){
     var x = $("#"+id).css("left");
     console.log("Updating X: "+ x);
     console.log("Updating Y: "+ y);
+    var n_id = e.currentTarget.id.substring(11);
 
     /* send the annotation to the server */
-    sendAnnotation(id, x, y, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
+    sendAnnotation(n_id, x, y, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
 }
 
 
