@@ -114,19 +114,51 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 function editAnnotation(e){
     /* send the annotation to the server */
     console.log("Dropping annotation..");
-    var id = e.currentTarget.id;
+    var id = e.currentTarget.id.substring(11);
     var y = $("#"+id).css("top");
     var x = $("#"+id).css("left");
     console.log("Updating X: "+ x);
     console.log("Updating Y: "+ y);
 
     /* send the annotation to the server */
-    sendAnnotation(e.currentTarget.id, e.offsetX, e.offsetY, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
+    sendAnnotation(id, e.offsetX, e.offsetY, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
 }
 
 
-function fillAnnotation(annotation) {
-    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span></button>");
-    annotation.append("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
-    annotation.append("<input type='text'>");
+function upDownVote(id, vote) {
+    var ups = annotation.attr("upVotes");
+    var downs = annotation.attr("downVotes");
+
+    if (vote > 0) {
+        ups += 1
+    }else {
+        downs += 1
+    }
+
+    var annotation=$("#annotation_"+id);
+    annotation.attr("upVotes", ups);
+    annotation.attr("downVotes", downs);
+
+    var total = ups - downs;
+    $("#upvotecount_"+id).text(total);
+}
+
+function fillAnnotation(id) {
+    var annotation=$("#annotation_"+id);
+    annotation.append("<button id='upvote_"+id+" type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span><span id='upvotecount_"+id+"'>0</span></button>");
+    annotation.append("<button id='downvote_"+id+" type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
+    annotation.append("<input id='text_"+id+" type='text'>");
+
+    $("#upvote_"+id).click(function() {
+        upDownVote(id, 1);
+
+    });
+    $("#upvote_"+id).click(function() {
+        var downs = annotation.attr("downsVotes");
+        downs += 1;
+        annotation.attr("downVotes", downs);
+    });
+    $("#text_"+id).on('input', function() {
+
+    });
 }

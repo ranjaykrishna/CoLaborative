@@ -26,7 +26,7 @@ function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description){
         /* make the asychronous call */
         $.ajax({
             type: "POST",
-            url: "/editAnnotation/",
+            url: "/editAnnotation",
             data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
             success: function (data) {
                 //syncAnnotations(data);
