@@ -30,8 +30,8 @@ def editAnnotation(request):
 
     annotation.text = request.REQUEST.get("text", "")
 
-    annotation.upVotes = request.REQUEST.get("upVotes", 0)
-    annotation.downVotes = request.REQUEST.get("downVotes", 0)
+    annotation.upVotes = request.REQUEST.get("ups", 0)
+    annotation.downVotes = request.REQUEST.get("downs", 0)
 
     annotation.save()
     return HttpResponse("true", content_type="application/json")

@@ -15,7 +15,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description){
+function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description, ups, downs){
     var csrftoken = getCookie('csrftoken');
     var waiting = false;
 
@@ -27,7 +27,7 @@ function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description){
         $.ajax({
             type: "POST",
             url: "/editAnnotation",
-            data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
+            data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, ups:ups, downs:downs, csrfmiddlewaretoken: csrftoken},
             success: function (data) {
                 //syncAnnotations(data);
                 console.log("Successfully sent annotations!");
