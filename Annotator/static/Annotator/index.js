@@ -157,11 +157,13 @@ function fillAnnotation(id) {
 
     $("#upvote_"+id).click(function() {
         upDownVote(id, 1);
+        editAnnotationByID(id);
     });
     $("#downvote_"+id).click(function() {
         upDownVote(id, -1);
+        editAnnotationByID(id);
     });
     $("#text_"+id).on('input', function() {
-
+        editAnnotationByID(id);
     });
 }
