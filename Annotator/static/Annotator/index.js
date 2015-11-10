@@ -58,8 +58,8 @@ function filter(mode) {
         if (mode == MODE_EDIT) {
             annotationdiv.show();
         } else {
-            var ups = annotationdiv.attr("upVotes");
-            var downs = annotationdiv.attr("downVotes");
+            var ups = parseInt(annotationdiv.attr("upVotes"));
+            var downs = parseInt(annotationdiv.attr("downVotes"));
             var total = ups - downs;
 
             if (mode == MODE_VERIFIED) {
