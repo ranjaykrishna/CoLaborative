@@ -125,7 +125,7 @@ function editAnnotationByID(id) {
     var w = parseInt(annotation.css("width").replace("px", ""));
     var h = parseInt(annotation.css("height").replace("px", ""));
 
-    var desc = $("#text_"+n_id).text();
+    var desc = $("#text_"+id).text();
 
     /* send the annotation to the server */
     sendAnnotation(n_id, x, y, h, w, desc);
