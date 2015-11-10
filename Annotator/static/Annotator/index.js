@@ -114,7 +114,7 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 function editAnnotation(e){
     /* send the annotation to the server */
     console.log("Dropping annotation..");
-    var id = e.currentTarget.id.substring(11);
+    var id = e.currentTarget.id;
     var y = $("#"+id).css("top");
     var x = $("#"+id).css("left");
     console.log("Updating X: "+ x);
