@@ -95,7 +95,7 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
         $('#annotation_'+id).draggable().resizable();
         $('#annotation_'+id).on('dragstop', function(e){editAnnotation(e)});
 
-        fillAnnotation($('#annotation_'+id));
+        fillAnnotation(id);
     }
 
     //change the css of the annotation
@@ -126,16 +126,15 @@ function editAnnotation(e){
 
 
 function upDownVote(id, vote) {
-    var ups = annotation.attr("upVotes");
-    var downs = annotation.attr("downVotes");
+    var annotation=$("#annotation_"+id);
+    var ups = parseInt(annotation.attr("upVotes"));
+    var downs = parseInt(annotation.attr("downVotes"));
 
     if (vote > 0) {
         ups += 1
     }else {
         downs += 1
     }
-
-    var annotation=$("#annotation_"+id);
     annotation.attr("upVotes", ups);
     annotation.attr("downVotes", downs);
 
@@ -145,18 +144,15 @@ function upDownVote(id, vote) {
 
 function fillAnnotation(id) {
     var annotation=$("#annotation_"+id);
-    annotation.append("<button id='upvote_"+id+" type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span><span id='upvotecount_"+id+"'>0</span></button>");
-    annotation.append("<button id='downvote_"+id+" type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
-    annotation.append("<input id='text_"+id+" type='text'>");
+    annotation.append("<button id='upvote_"+id+"' type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-up'></span><span id='upvotecount_"+id+"'>0</span></button>");
+    annotation.append("<button id='downvote_"+id+"' type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-down'></span></button>");
+    annotation.append("<input id='text_"+id+"' type='text'>");
 
     $("#upvote_"+id).click(function() {
         upDownVote(id, 1);
-
     });
-    $("#upvote_"+id).click(function() {
-        var downs = annotation.attr("downsVotes");
-        downs += 1;
-        annotation.attr("downVotes", downs);
+    $("#downvote_"+id).click(function() {
+        upDownVote(id, -1);
     });
     $("#text_"+id).on('input', function() {
 
