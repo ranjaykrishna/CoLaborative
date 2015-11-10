@@ -1,6 +1,25 @@
+// Code to handle mode
 var MODE_VERIFIED = "VERIFIED";
 var MODE_EDIT = "EDIT";
 var MODE_INCORRECT = "INCORRECT";
+var verifyClicked = function() {
+  filter("VERIFIED");
+  $('#verified').removeClass('btn-info').addClass('btn-primary');
+  $('#edit').addClass('btn-info').removeClass('btn-primary');
+  $('#incorrect').addClass('btn-info').removeClass('btn-primary');
+}
+var editClicked = function() {
+  filter("EDIT");
+  $('#verified').addClass('btn-info').removeClass('btn-primary');
+  $('#edit').removeClass('btn-info').addClass('btn-primary');
+  $('#incorrect').addClass('btn-info').removeClass('btn-primary');
+}
+var incorrectClicked = function() {
+  filter("INCORRECT");
+  $('#verified').addClass('btn-info').removeClass('btn-primary');
+  $('#edit').addClass('btn-info').removeClass('btn-primary');
+  $('#incorrect').removeClass('btn-info').addClass('btn-primary');
+}
 
 var VERIFIED_THRESHOLD = 3;
 var INCORRECT_THRESHOLD = -3;
