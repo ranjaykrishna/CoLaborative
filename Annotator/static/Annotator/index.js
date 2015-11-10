@@ -129,8 +129,8 @@ function editAnnotationByID(id) {
     var h = parseInt(annotation.css("height").replace("px", ""));
 
     var desc = $("#text_"+id).val();
-    var ups = parseInt(annotationdiv.attr("upVotes"));
-    var downs = parseInt(annotationdiv.attr("downVotes"));
+    var ups = parseInt(annotation.attr("upVotes"));
+    var downs = parseInt(annotation.attr("downVotes"));
 
     /* send the annotation to the server */
     sendAnnotation(id, x, y, h, w, desc, ups, downs);
