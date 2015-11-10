@@ -97,7 +97,7 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
         $('#annotation_'+id).on('dragstop', function(e){editAnnotation(e)});
 
         fillAnnotation(id);
-        //editAnnotationByID(id);
+        editAnnotationByID(id);
     }
 
     //change the css of the annotation
