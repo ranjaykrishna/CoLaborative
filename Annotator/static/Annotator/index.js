@@ -114,15 +114,21 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
 function editAnnotation(e){
     /* send the annotation to the server */
     console.log("Dropping annotation..");
-    var id = e.currentTarget.id;
-    var y = parseInt($("#"+id).css("top").replace("px", ""));
-    var x = parseInt($("#"+id).css("left").replace("px", ""));
-    console.log("Updating X: "+ x);
-    console.log("Updating Y: "+ y);
     var n_id = e.currentTarget.id.substring(11);
+    editAnnotationByID(n_id);
+}
+
+function editAnnotationByID(id) {
+    var annotation = $("#annotation_"+id);
+    var y = parseInt(annotation.css("top").replace("px", ""));
+    var x = parseInt(annotation.css("left").replace("px", ""));
+    var w = parseInt(annotation.css("width").replace("px", ""));
+    var h = parseInt(annotation.css("height").replace("px", ""));
+
+    var desc = $("#text_"+n_id).text();
 
     /* send the annotation to the server */
-    sendAnnotation(n_id, x, y, parseInt(e.currentTarget.clientHeight), parseInt(e.currentTarget.clientWidth), "Some description.");
+    sendAnnotation(n_id, x, y, h, w, desc);
 }
 
 
