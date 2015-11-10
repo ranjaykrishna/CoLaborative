@@ -47,7 +47,7 @@ function getAnnotations(){
     $.ajax({
         type: "GET",
         url: "/getAnnotations",
-        data: {csrfmiddlewaretoken: csrftoken},
+        //data: {csrfmiddlewaretoken: csrftoken},
         success: function (data) {
             /* TODO: Parse the JSON into SVG elements. */
 

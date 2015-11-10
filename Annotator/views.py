@@ -1,16 +1,18 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+import json
 
 from Annotator.models import Annotation
-from django.core import serializers
 
 def index(request):
     return render_to_response('Annotator/index.html')
 
 def getAnnotations(request):
-    data = serializers.serialize("json", Annotation.objects.all())
-    return HttpResponse(data, content_type="application/json")
+    data = []
+    for a in Annotations.objects.all():
+      data.append({'text': a.text, 'x': a.x, 'y': a.y, 'w': a.w, 'h': a.x, 'upVotes': a.upVotes, 'downVotes': a.downVotes})
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 def editAnnotation(request):
     annotationId = request.REQUEST.get("id", -1)
