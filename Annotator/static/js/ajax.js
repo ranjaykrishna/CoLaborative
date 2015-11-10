@@ -49,8 +49,7 @@ function getAnnotations(){
         url: "/getAnnotations",
         //data: {csrfmiddlewaretoken: csrftoken},
         success: function (data) {
-            /* TODO: Parse the JSON into SVG elements. */
-
+            syncAnnotations(data)
         }
     });
 }
