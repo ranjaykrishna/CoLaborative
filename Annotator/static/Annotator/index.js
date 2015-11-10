@@ -32,13 +32,13 @@ $(function() {
     $("#aImg").mousedown(function(mevent){
         //create div
         addAnnotation(-1,mevent.offsetX, mevent.offsetY, 50, 50, "default", 0, 0);
+        editAnnotation(mevent);
 
     });
 
     //mouse up
     $("#aImg").mouseup(function(mevent){
         //send update to server
-
     });
 });
 
