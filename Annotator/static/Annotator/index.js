@@ -115,14 +115,14 @@ function editAnnotation(e){
     /* send the annotation to the server */
     console.log("Dropping annotation..");
     var id = e.currentTarget.id;
-    var y = $("#"+id).css("top");
-    var x = $("#"+id).css("left");
+    var y = parseInt($("#"+id).css("top").replace("px", ""));
+    var x = parseInt($("#"+id).css("left").replace("px", ""));
     console.log("Updating X: "+ x);
     console.log("Updating Y: "+ y);
     var n_id = e.currentTarget.id.substring(11);
 
     /* send the annotation to the server */
-    sendAnnotation(n_id, x, y, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
+    sendAnnotation(n_id, x, y, parseInt(e.currentTarget.clientHeight), parseInt(e.currentTarget.clientWidth), "Some description.");
 }
 
 
