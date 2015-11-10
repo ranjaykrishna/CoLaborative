@@ -106,7 +106,8 @@ function addAnnotation(id,x,y,w,h,text,upVotes,downVotes) {
     annotation.attr("upVotes", upVotes);
     annotation.attr("downVotes", downVotes);
 
-    $("#text_"+id).text(text);
+    $("#text_"+id).val(text);
+    upDownVote(id, 0);
 
     $(".isResizable").draggable().resizable(function(e){ console.log("resizing"); console.log(e); });
     $('.isResizable').on('mousedrop', function(e){editAnnotation(e);});
@@ -127,10 +128,12 @@ function editAnnotationByID(id) {
     var w = parseInt(annotation.css("width").replace("px", ""));
     var h = parseInt(annotation.css("height").replace("px", ""));
 
-    var desc = $("#text_"+id).text();
+    var desc = $("#text_"+id).val();
+    var ups = parseInt(annotationdiv.attr("upVotes"));
+    var downs = parseInt(annotationdiv.attr("downVotes"));
 
     /* send the annotation to the server */
-    sendAnnotation(id, x, y, h, w, desc);
+    sendAnnotation(id, x, y, h, w, desc, ups, downs);
 }
 
 
@@ -141,7 +144,7 @@ function upDownVote(id, vote) {
 
     if (vote > 0) {
         ups += 1
-    }else {
+    }else if(vote < 0) {
         downs += 1
     }
     annotation.attr("upVotes", ups);
