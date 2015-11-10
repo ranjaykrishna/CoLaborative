@@ -121,7 +121,7 @@ function editAnnotation(e){
     console.log("Updating Y: "+ y);
 
     /* send the annotation to the server */
-    sendAnnotation(id, e.offsetX, e.offsetY, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
+    sendAnnotation(id, x, y, e.currentTarget.clientHeight, e.currentTarget.clientWidth, "Some description.");
 }
 
 
