@@ -11,7 +11,7 @@ def index(request):
 def getAnnotations(request):
     data = []
     for a in Annotation.objects.all():
-      data.append({'text': a.text, 'x': a.x, 'y': a.y, 'w': a.w, 'h': a.x, 'upVotes': a.upVotes, 'downVotes': a.downVotes})
+      data.append({'id':a.id, 'text': a.text, 'x': a.x, 'y': a.y, 'w': a.w, 'h': a.x, 'upVotes': a.upVotes, 'downVotes': a.downVotes})
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def editAnnotation(request):
