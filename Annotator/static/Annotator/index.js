@@ -45,6 +45,7 @@ $(function() {
 function syncAnnotations(server_annotations) {
     annotations = server_annotations;
 
+    $("#annotation_container").html('');
     for (var i=0; i<annotations.length; i++) {
         var an = annotations[i];
         addAnnotation(an.id, an.x, an.y, an.w, an.h, an.text, an.upVotes, an.downVotes);
