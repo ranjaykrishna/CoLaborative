@@ -17,20 +17,27 @@ function getCookie(name) {
 
 function sendAnnotation(t_id, t_x, t_y, t_h, t_w, t_description){
     var csrftoken = getCookie('csrftoken');
+    var waiting = false;
 
-    /* make the asychronous call */
-    $.ajax({
-        type: "POST",
-        url: "/editAnnotation",
-        data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
-        success: function(data) {
-            //syncAnnotations(data);
-            console.log("Successfully sent annotations!");
-        },
-        fail: function(data){
-            /* TODO: Revert the change on the front end. */
-        }
-    });
+    console.log("Waiting: "+waiting);
+    if(!waiting) {
+        waiting = true;
+
+        /* make the asychronous call */
+        $.ajax({
+            type: "POST",
+            url: "/editAnnotation/",
+            data: {id: t_id, x: t_x, y: t_y, h: t_h, w: t_w, description: t_description, csrfmiddlewaretoken: csrftoken},
+            success: function (data) {
+                //syncAnnotations(data);
+                console.log("Successfully sent annotations!");
+                waiting = false;
+            },
+            fail: function (data) {
+                /* TODO: Revert the change on the front end. */
+            }
+        });
+    }
 }
 
 function getAnnotations(){
